@@ -1,2 +1,1 @@
-# yavch
-Yet Another Vim Cheatsheet
+# Yet Another Vim Cheatsheet

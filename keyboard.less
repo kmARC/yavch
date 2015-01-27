@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+  font-family: "Arial";
+}
+
+
+.linear-gradient( @dir: top, @start-color: #eee, @end-color: #aaa ) {
+  background: -webkit-linear-gradient(@dir, @start-color 0%, @end-color 100%);
+  background: -moz-linear-gradient(@dir, @start-color 0%, @end-color 100%);
+  background: -ms-linear-gradient(@dir, @start-color 0%, @end-color 100%);
+  background: -o-linear-gradient(@dir, @start-color 0%, @end-color 100%);
+  background: linear-gradient(@dir, @start-color 0%, @end-color 100%);
+} 
+
+@key-h-margin: 0.2%;
+@key-v-margin: 5px;
+@key-width: (100% - 14*@key-h-margin*2)/14.5;
+@key-padding: 2px;
+@key-border: 1px;
+
+.key-width(@multiplier: 1, @occupy: 1) {
+  width: @key-width * @multiplier + (@occupy - 1) * 2 * @key-h-margin;
+}
+
+.keyboard {
+height: 400px;
+
+  .row {
+    height: 20%;
+    kbd {
+      font-weight: bold;
+      font-size: 15pt;
+      width   : @key-width;
+      height  : 100%;
+      margin  : @key-v-margin @key-h-margin;
+      padding : @key-padding;
+      border  : @key-border solid gray;
+      float   : left;
+      vertical-align: middle;
+
+      &#key_BACKSPACE {
+        .key-width(1.5);
+      }
+
+      &#key_TAB {
+        .key-width(1.3);
+      }
+
+      &#key_\\ {
+        .key-width(1.2);
+      }
+
+      &#key_CAPSLOCK {
+        .key-width(1.6);
+      }
+
+      &#key_ENTER {
+        .key-width(1.9, 2);
+      }
+
+      &#key_SHIFT_L {
+        .key-width(2.1, 2);
+      }
+
+      &#key_SHIFT_R {
+        .key-width(2.4, 2);
+      }
+    
+      &.type_move {
+        .linear-gradient(top, rgb(160, 180, 160), rgb(210, 230, 210));
+      }
+      &.type_command {
+        .linear-gradient(top, rgb(200, 200, 120), rgb(260, 260, 180));
+      }
+      &.type_insert {
+        .linear-gradient(top, rgb(200, 200, 160), rgb(250, 250, 210));
+      }
+      &.type_find {
+        .linear-gradient(top, rgb(120, 200, 120), rgb(180, 255, 180));
+      }
+      &.type_tag {
+        .linear-gradient(top, rgb(160, 160, 180), rgb(210, 210, 230));
+      }
+      &.type_macro {
+        .linear-gradient(top, rgb(200, 160, 160), rgb(250, 210, 210));
+      }
+      &.type_operator {
+        .linear-gradient(top, rgb(200, 160, 120), rgb(250, 210, 170));
+      }
+      .caption {
+        height: 35%;
+        border-bottom: solid 1px #aaa;
+      }
+
+      .desc {
+        height: 65%;
+        font-size: 11pt;
+        font-weight: normal;
+      }
+    }
+
+    &.mod kbd {
+      .key-width(1.2, 1);
+
+      &#key_SPACE {
+        .key-width(14.5-1.2*7, 7);
+      }
+    }
+  }
+}
