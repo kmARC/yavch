@@ -1,173 +1,127 @@
+/* vim: set ts=2 sw=2: */
 * {
   box-sizing: border-box;
-  font-family: "Montserrat";
 }
 
-
-.linear-gradient( @dir: top, @start-color: #eee, @end-color: #aaa ) {
-  background: -webkit-linear-gradient(@dir, @start-color 0%, @end-color 100%);
-  background: -moz-linear-gradient(@dir, @start-color 0%, @end-color 100%);
-  background: -ms-linear-gradient(@dir, @start-color 0%, @end-color 100%);
-  background: -o-linear-gradient(@dir, @start-color 0%, @end-color 100%);
-  background: linear-gradient(@dir, @start-color 0%, @end-color 100%);
-} 
-
-@key-h-margin: 0.2%;
-@key-v-margin: 5px;
-@key-width: (100% - 14*@key-h-margin*2)/14.5;
+/* Functions */
+@key-margin: 0.2%;
+@key-width: (100% - 14*@key-margin*2)/14.5;
 @key-padding: 2px;
-@key-border: 1px;
 
 .key-width(@multiplier: 1, @occupy: 1) {
-  width: @key-width * @multiplier + (@occupy - 1) * 2 * @key-h-margin;
+  width: @key-width * @multiplier + (@occupy - 1) * 2 * @key-margin;
 }
 
-/* Keyboard sizing*/
-.keyboard {
-height: 400px;
+/* Util */
+.clear {
+  clear: both;
+}
 
-  .row {
-    height: 20%;
-    kbd {
-      text-align: center;
-      font-weight: bold;
-      font-size: 15pt;
-      width   : @key-width;
-      height  : 100%;
-      margin  : @key-v-margin @key-h-margin;
-      padding : @key-padding;
-      border  : @key-border solid gray;
-      float   : left;
-      vertical-align: middle;
+/* Keyboard sizing */
+.keyboard .row {
 
-      &#key_BACKSPACE {
-        .key-width(1.5);
-      }
+  height: 80px;
 
-      &#key_TAB {
-        .key-width(1.3);
-      }
+  kbd {
+    width   : @key-width;
+    height  : 100%;
+    margin  : @key-margin;
+    float   : left;
 
-      &#key_\\ {
-        .key-width(1.2);
-      }
-
-      &#key_CAPSLOCK {
-        .key-width(1.6);
-      }
-
-      &#key_ENTER {
-        .key-width(1.9, 2);
-      }
-
-      &#key_SHIFT_L {
-        .key-width(2.1, 2);
-      }
-
-      &#key_SHIFT_R {
-        .key-width(2.4, 2);
-      }
-    
-      .caption {
-        height: 40%;
-        border-bottom: solid 1px #ddd;
-      }
-
-      .desc {
-        height: 60%;
-        padding-top: 5px;
-        font-size: 11pt;
-        font-weight: normal;
-      }
+    &#key_BACKSPACE {
+      .key-width(1.5);
     }
 
-    &.mod kbd {
-      .key-width(1.2, 1);
+    &#key_TAB {
+      .key-width(1.3);
+    }
 
-      &#key_SPACE {
-        .key-width(14.5-1.2*7, 7);
-      }
+    &#key_\\ {
+      .key-width(1.2);
+    }
+
+    &#key_CAPSLOCK {
+      .key-width(1.6);
+    }
+
+    &#key_ENTER {
+      .key-width(1.9, 2);
+    }
+
+    &#key_SHIFT_L {
+      .key-width(2.1, 2);
+    }
+
+    &#key_SHIFT_R {
+      .key-width(2.4, 2);
+    }
+  }
+
+  &.mod kbd {
+    .key-width(1.2, 1);
+
+    &#key_SPACE {
+      .key-width(14.5-1.2*7, 7);
     }
   }
 }
 
-.keyboard.flat-keys{
-    background-color: #F1F1F1;
-
-        color: #ECF0F1;
-    .row kbd {
-
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.15);
+/* Flat theme */
+.keyboard.flat-keys {
+  background-color: #F1F1F1;
+  color: #ECF0F1;
+  .row kbd {
+    font-family: "Montserrat";
+    padding: @key-padding;
+    text-align: center;
+    font-size: 15pt;
+    box-shadow: 0px 0px 1px rgba(0,0,0,0.15);
     background: none repeat scroll 0% 0% #FFF;
     border-radius: 5px;
     border: 1px solid #DDD;
     border-bottom: 2px solid #DDD;
     overflow: hidden;
-
     .caption {
-        margin: -3px;
-        padding: 2px 10px;
+      height: 40%;
+      border-bottom: solid 1px #ddd;
+      margin: -3px;
+      padding: 2px 10px;
+      font-weight: bold;
     }
     .desc {
-    color: #555;
+      color: #555;
+      font-size: small;
+      height: 60%;
+      padding-top: 5px;
+      font-size: 11pt;
+      font-weight: normal;
     }
-      &.type_move .caption{
-        background-color: #2ecc71;
-      }
-
-      &.type_command .caption {
+    &.type_move .caption {
+      background-color: #2ecc71;
+    }
+    &.type_command .caption {
       background-color: #f39c12;
-      }
-      &.type_insert .caption {
+    }
+    &.type_insert .caption {
       background-color: #f1c40f;
-      }
-     &.type_find .caption {
-        background-color: #1abc9c;
-     } 
-     &.type_tag .caption {
-        background-color: #3498db;
-     } 
-     &.type_macro .caption {
-        background-color:#e74c3c;
-     } 
-     &.type_operator .caption {
-        background-color: #d35400;
-     } 
-     &.type_extra .caption {
-        background-color: #34495e;
-     }
-     &.type_code .caption {
-        background-color: #8e44ad;
-     }
-}
-}
-
-.keyboard.light-keys .row kbd {
-      &.type_move {
-        .linear-gradient(top, rgb(160, 180, 160), rgb(210, 230, 210));
-      }
-      &.type_command {
-        .linear-gradient(top, rgb(200, 200, 120), rgb(260, 260, 180));
-      }
-      &.type_insert {
-        .linear-gradient(top, rgb(200, 200, 160), rgb(250, 250, 210));
-      }
-      &.type_find {
-        .linear-gradient(top, rgb(120, 200, 120), rgb(180, 255, 180));
-      }
-      &.type_tag {
-        .linear-gradient(top, rgb(160, 160, 180), rgb(210, 210, 230));
-      }
-      &.type_macro {
-        .linear-gradient(top, rgb(200, 160, 160), rgb(250, 210, 210));
-      }
-      &.type_operator {
-        .linear-gradient(top, rgb(200, 160, 120), rgb(250, 210, 170));
-      }
-      &.type_extra {
-        .linear-gradient(top, rgb(150, 150, 150), rgb(200, 200, 200));
-      }
-      &.type_code {
-        .linear-gradient(top, rgb(160, 120, 200), rgb(200, 160, 240));
-      }
+    }
+    &.type_find .caption {
+      background-color: #1abc9c;
+    }
+    &.type_tag .caption {
+      background-color: #3498db;
+    }
+    &.type_macro .caption {
+      background-color: #e74c3c;
+    }
+    &.type_operator .caption {
+      background-color: #d35400;
+    }
+    &.type_extra .caption {
+      background-color: #34495e;
+    }
+    &.type_code .caption {
+      background-color: #8e44ad;
+    }
+  }
 }
