@@ -1,0 +1,22 @@
+{
+  "name": "yavch",
+  "version": "1.0.0",
+  "description": "Yet Another Vim Cheatsheet",
+  "main": "main.js",
+  "scripts": {
+    "test": "exit -1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kmarc/yavch.git"
+  },
+  "keywords": [
+    "vim"
+  ],
+  "author": "Mark Korondi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kmarc/yavch/issues"
+  },
+  "homepage": "https://github.com/kmarc/yavch#readme"
+}
